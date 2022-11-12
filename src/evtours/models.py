@@ -1,0 +1,103 @@
+from dataclasses import dataclass
+from datetime import datetime, date
+
+
+@dataclass
+class FuelStation:
+    access_code: str
+    access_days_time: str
+    access_detail_code: None
+    cards_accepted: None
+    date_last_confirmed: date
+    expected_date: None
+    fuel_type_code: str
+    groups_with_access_code: str
+    id: int
+    open_date: date
+    owner_type_code: str
+    status_code: str
+    restricted_access: bool
+    station_name: str
+    station_phone: str
+    updated_at: datetime
+    facility_type: str
+    geocode_status: str
+    latitude: float
+    longitude: float
+    city: str
+    intersection_directions: None
+    plus4: None
+    state: str
+    street_address: str
+    zip: int
+    country: str
+    bd_blends: None
+    cng_dispenser_num: None
+    cng_fill_type_code: None
+    cng_psi: None
+    cng_renewable_source: None
+    cng_total_compression: None
+    cng_total_storage: None
+    cng_vehicle_class: None
+    e85_blender_pump: None
+    e85_other_ethanol_blends: None
+    ev_connector_types: list[str]
+    ev_dc_fast_num: None
+    ev_level1_evse_num: None
+    ev_level2_evse_num: int
+    ev_network: str
+    ev_network_web: None
+    ev_other_evse: None
+    ev_pricing: str
+    ev_renewable_source: None
+    hy_is_retail: None
+    hy_pressures: None
+    hy_standards: None
+    hy_status_link: None
+    lng_renewable_source: None
+    lng_vehicle_class: None
+    lpg_primary: None
+    lpg_nozzle_types: None
+    ng_fill_type_code: None
+    ng_psi: None
+    ng_vehicle_class: None
+    access_days_time_fr: None
+    intersection_directions_fr: None
+    bd_blends_fr: None
+    groups_with_access_code_fr: str
+    ev_pricing_fr: None
+    distance: float
+    distance_km: float
+
+
+@dataclass
+class EvStation:
+    access_code: str
+    access_days_time: str
+    date_last_confirmed: date
+    groups_with_access_code: str
+    id: int
+    restricted_access: bool
+    station_name: str
+    station_phone: str
+    updated_at: datetime
+    facility_type: str
+    geocode_status: str
+    latitude: float
+    longitude: float
+    city: str
+    state: str
+    street_address: str
+    zip: int
+    country: str
+    distance: float
+    distance_km: float
+    ev_connector_types: list[str]
+    ev_dc_fast_num: None
+    ev_level1_evse_num: None
+    ev_level2_evse_num: int
+    ev_network: str
+    ev_network_web: None
+    ev_other_evse: None
+    ev_pricing: str
+    ev_renewable_source: None

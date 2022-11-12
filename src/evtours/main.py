@@ -1,65 +1,32 @@
-from enum import Enum
+import os
+from datetime import datetime, date
 
+import cattrs
+import requests
+import ujson
 from fastapi import FastAPI, Query
-from pydantic import BaseModel
 
+from evtours.models import EvStation
 
-class ModelName(str, Enum):
-    alexnet = "alexnet"
-    resnet = "resnet"
-    lenet = "lenet"
-
-
-class Item(BaseModel):
-    name: str
-    description: str | None = None
-    price: float
-    tax: float | None = None
-
+API_KEY = os.environ.get("NREL_API_KEY")
+nearest_api = "https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest.json"
 
 app = FastAPI()
-
-fake_items_db = [{"item_name": "Foo"}, {"item_name": "Bar"}, {"item_name": "Baz"}]
-
 
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
 
 
-@app.post("/items/")
-async def create_item(item: Item):
-    item_dict = item.dict()
-    if item.tax:
-        price_with_tax = item.price + item.tax
-        item_dict.update({"price_with_tax": price_with_tax})
-    return item_dict
+@app.get("/nearest-ten/")
+async def nearest_ten(latitude: float = Query(ge=-90, le=90),
+                      longitude: float = Query(ge=-180, le=180)):
+    r = requests.get(f"{nearest_api}?api_key={API_KEY}&latitude={latitude}&longitude={longitude}&fuel_type=ELEC&limit=10")
+    data = ujson.loads(r.text)
 
+    converter = cattrs.Converter()
+    converter.register_structure_hook(date, lambda v, _: datetime.fromisoformat(v))
+    converter.register_structure_hook(datetime, lambda v, _: datetime.strptime(v, "%Y-%m-%dT%H:%M:%SZ"))
 
-@app.put("/items/{item_id}")
-async def create_item(item_id: int, item: Item):
-    return {"item_id": item_id, **item.dict()}
-
-
-@app.get("/items/")
-async def read_items(q: str | None = Query(default=None, max_length=50)):
-    results = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
-    if q:
-        results.update({"q": q})
-    return results
-
-
-@app.get("/items/")
-async def read_item(skip: int = 0, limit: int = 10):
-    return fake_items_db[skip: skip + limit]
-
-
-@app.get("/models/{model_name}")
-async def get_model(model_name: ModelName):
-    if model_name is ModelName.alexnet:
-        return {"model_name": model_name, "message": "Deep Learning FTW!"}
-
-    if model_name.value == "lenet":
-        return {"model_name": model_name, "message": "LeCNN all the images"}
-
-    return {"model_name": model_name, "message": "Have some residuals"}
+    station = converter.structure(data["fuel_stations"][0], EvStation)
+    return station

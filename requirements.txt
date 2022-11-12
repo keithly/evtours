@@ -10,6 +10,14 @@ anyio==3.6.2 \
     # via
     #   starlette
     #   watchfiles
+attrs==22.1.0 \
+    --hash=sha256:29adc2665447e5191d0e7c568fde78b21f9672d344281d0c6e1ab085429b22b6 \
+    --hash=sha256:86efa402f67bf2df34f51a335487cf46b1ec130d02b8d39fd248abfd30da551c
+    # via cattrs
+cattrs==22.2.0 \
+    --hash=sha256:bc12b1f0d000b9f9bee83335887d532a1d3e99a833d1bf0882151c97d3e68c21 \
+    --hash=sha256:f0eed5642399423cf656e7b66ce92cdc5b963ecafd041d1b24d136fdde7acf6d
+    # via evtours (pyproject.toml)
 certifi==2022.9.24 \
     --hash=sha256:0d9c601124e5a6ba9712dbc60d9c53c21e34f5f641fe83002317394311bdce14 \
     --hash=sha256:90c1a32f1d68f940488354e36370f6cca89f0f106db09518524c88d6ed83f382
