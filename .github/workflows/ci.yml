@@ -1,0 +1,121 @@
+name: Deploy to ECR and Lambda
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  ECR_REPOSITORY: evtours
+  TF_DIR: infra/tf
+
+jobs:
+  build-push-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - uses: docker/setup-buildx-action@v2
+
+      - name: Docker Build
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          load: true
+          tags: |
+            ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Docker Build and Push
+        uses: docker/build-push-action@v3
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
+            ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - uses: actions/cache@v3
+        name: Cache TFLint plugin dir
+        with:
+          path: ~/.tflint.d/plugins
+          key: ${{ runner.os }}-tflint-${{ hashFiles('**/.tflint.hcl') }}
+
+      - uses: terraform-linters/setup-tflint@v3
+        name: Setup TFLint
+        with:
+          tflint_version: v0.43.0
+
+      - name: Init TFLint
+        run: cd ${{ env.TF_DIR }} && tflint --init
+
+      - name: Show TFLint version
+        run: cd ${{ env.TF_DIR }} && tflint --version
+
+      - name: Run TFLint
+        run: cd ${{ env.TF_DIR }} && tflint -f compact
+
+      - uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.3.6
+
+      - name: Config Terraform plugin cache
+        run: |
+          echo 'plugin_cache_dir="$HOME/.terraform.d/plugin-cache"' >~/.terraformrc
+          mkdir --parents ~/.terraform.d/plugin-cache
+
+      - name: Cache Terraform
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.terraform.d/plugin-cache
+          key: ${{ runner.os }}-terraform-${{ hashFiles('**/.terraform.lock.hcl') }}
+          restore-keys: |
+            ${{ runner.os }}-terraform-
+
+      - name: Check Terraform Format
+        id: fmt
+        run: terraform -chdir='${{ env.TF_DIR }}' fmt -check
+
+      - name: Terraform Init
+        id: init
+        run: terraform -chdir='${{ env.TF_DIR }}' init
+
+      - name: Terraform Validate
+        id: validate
+        run: terraform -chdir='${{ env.TF_DIR }}' validate -no-color
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform -chdir='${{ env.TF_DIR }}' plan -var 'image_tag=${{ github.sha }}' -no-color -out=tfplan
+        continue-on-error: true
+
+      - name: Terraform Plan Status
+        if: steps.plan.outcome == 'failure'
+        run: exit 1
+
+      - name: Terraform Apply
+        id: apply
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: terraform -chdir='${{ env.TF_DIR }}' apply -auto-approve tfplan
+        continue-on-error: true
