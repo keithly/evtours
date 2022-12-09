@@ -37,4 +37,4 @@ COPY ./lambda-entrypoint.sh /lambda-entrypoint.sh
 
 ENV APP_VERSION=0.1.0
 
-ENTRYPOINT [ "/lambda-entrypoint.sh", "evtours/function_url.handler" ]
+ENTRYPOINT [ "/lambda-entrypoint.sh", "evtours/main.handler" ]
