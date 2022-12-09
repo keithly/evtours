@@ -22,7 +22,7 @@ async def root():
     return {"message": "Hello World"}
 
 
-@app.get("/nearest-ten/")
+@app.get("/nearest-ten")
 async def nearest_ten(latitude: float = Query(ge=-90, le=90),
                       longitude: float = Query(ge=-180, le=180)):
     logger.info("nearest-ten called")
