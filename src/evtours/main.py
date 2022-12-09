@@ -1,5 +1,6 @@
 import os
 from datetime import datetime, date
+import logging
 
 import cattrs
 import httpx
@@ -13,7 +14,8 @@ API_KEY = os.environ.get("NREL_API_KEY")
 nearest_api = "https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest.json"
 
 app = FastAPI()
-
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 
 @app.get("/")
 async def root():
@@ -23,10 +25,11 @@ async def root():
 @app.get("/nearest-ten/")
 async def nearest_ten(latitude: float = Query(ge=-90, le=90),
                       longitude: float = Query(ge=-180, le=180)):
+    logger.info("nearest-ten called")
     async with httpx.AsyncClient() as client:
         r = await client.get(
             f"{nearest_api}?api_key={API_KEY}&latitude={latitude}&longitude={longitude}&fuel_type=ELEC&limit=10")
-
+    logger.info("nrel endpoint called")
     data = ujson.loads(r.text)
 
     converter = cattrs.Converter()
