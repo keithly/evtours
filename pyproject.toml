@@ -10,4 +10,5 @@ dependencies = ["fastapi[all]", "cattrs", "mangum", "boto3"]
 requires-python = ">=3.11"
 
 [project.optional-dependencies]
-dev = ["pytest", "botocore-stubs[ssm]", "boto3-stubs[ssm]"]
+test = ["pytest"]
+dev = ["pytest", "black", "botocore-stubs[ssm]", "boto3-stubs[ssm]"]
