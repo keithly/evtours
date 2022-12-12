@@ -2,9 +2,10 @@ terraform {
   required_version = ">= 1.3"
 
   backend "s3" {
-    bucket = "krp-project-tfstate"
-    key    = "evtours.tfstate"
-    region = "us-east-2"
+    bucket  = "krp-project-tfstate"
+    key     = "evtours.tfstate"
+    region  = "us-east-2"
+    encrypt = "true"
   }
 
   required_providers {
