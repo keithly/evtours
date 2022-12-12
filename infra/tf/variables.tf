@@ -14,3 +14,9 @@ variable "log_retention_days" {
   type        = number
   default     = 60
 }
+
+variable "nrel_api_key" {
+  description = "NREL api key for https://developer.nrel.gov/"
+  type        = string
+  sensitive   = true
+}
