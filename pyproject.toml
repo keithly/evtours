@@ -6,8 +6,8 @@ build-backend = "hatchling.build"
 name = "evtours"
 classifiers = ["Private :: Do Not Upload"]
 version = "0.1.0"
-dependencies = ["fastapi[all]", "cattrs", "mangum"]
+dependencies = ["fastapi[all]", "cattrs", "mangum", "boto3"]
 requires-python = ">=3.11"
 
 [project.optional-dependencies]
-dev = ["pytest"]
+dev = ["pytest", "botocore-stubs[ssm]", "boto3-stubs[ssm]"]

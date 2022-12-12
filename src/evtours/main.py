@@ -2,6 +2,7 @@ import os
 from datetime import datetime, date
 import logging
 
+import boto3
 import cattrs
 import httpx
 import ujson
@@ -25,10 +26,13 @@ async def root():
 @app.get("/nearest-ten")
 async def nearest_ten(latitude: float = Query(ge=-90, le=90),
                       longitude: float = Query(ge=-180, le=180)):
+    ssm = boto3.client('ssm')
+    api_key = ssm.get_parameter(Name="/api_keys/nrel", WithDecryption="true")
+
     logger.info("nearest-ten called")
     async with httpx.AsyncClient() as client:
         r = await client.get(
-            f"{nearest_api}?api_key={API_KEY}&latitude={latitude}&longitude={longitude}&fuel_type=ELEC&limit=10")
+            f"{nearest_api}?api_key={api_key}&latitude={latitude}&longitude={longitude}&fuel_type=ELEC&limit=10")
     logger.info("nrel endpoint called")
     data = ujson.loads(r.text)
 
