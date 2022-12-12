@@ -27,7 +27,7 @@ async def root():
 async def nearest_ten(latitude: float = Query(ge=-90, le=90),
                       longitude: float = Query(ge=-180, le=180)):
     ssm = boto3.client('ssm')
-    api_key = ssm.get_parameter(Name="/api_keys/nrel", WithDecryption="true")
+    api_key = ssm.get_parameter(Name="/api_keys/nrel", WithDecryption=True).get("Parameter").get("Value")
 
     logger.info("nearest-ten called")
     async with httpx.AsyncClient() as client:
