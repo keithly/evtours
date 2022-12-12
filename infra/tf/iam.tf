@@ -32,11 +32,12 @@ data "aws_iam_policy_document" "lambda" {
     resources = ["${aws_cloudwatch_log_group.this.arn}:*"]
     effect    = "Allow"
   }
+
   statement {
     actions = [
       "ssm:GetParameter*"
     ]
-    resources = ["*/api_keys/nrel"]
+    resources = ["arn:${data.aws_partition.current}:ssm:${data.aws_region.current}:${local.account_id}:parameter/api_keys/nrel"]
     effect    = "Allow"
   }
 }
