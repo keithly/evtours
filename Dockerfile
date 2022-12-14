@@ -18,7 +18,7 @@ RUN apt-get update && \
 RUN curl https://github.com/aws/aws-lambda-runtime-interface-emulator/releases/latest/download/aws-lambda-rie -Lo /usr/local/bin/aws-lambda-rie && \
     chmod +x /usr/local/bin/aws-lambda-rie
 
-RUN mkdir -p /src && \
+RUN mkdir /src && \
     python3 -m pip install -U --no-cache-dir pip setuptools wheel && \
     python3 -m pip install --no-cache-dir --target /src awslambdaric
 
@@ -31,9 +31,9 @@ WORKDIR /src
 COPY requirements.txt .
 RUN python3 -m pip install --no-cache-dir --target /src -r requirements.txt
 
+COPY ./lambda-entrypoint.sh /lambda-entrypoint.sh
 COPY --from=build-image /usr/local/bin/aws-lambda-rie /usr/local/bin/aws-lambda-rie
 COPY --from=build-image /src .
-COPY ./lambda-entrypoint.sh /lambda-entrypoint.sh
 
 ENV APP_VERSION=0.1.0
 
