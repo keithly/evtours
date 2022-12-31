@@ -207,9 +207,9 @@ markupsafe==2.1.1 \
     --hash=sha256:f121a1420d4e173a5d96e47e9a0c0dcff965afdf1626d28de1460815f7c4ee7a \
     --hash=sha256:fc7b548b17d238737688817ab67deebb30e8073c95749d55538ed473130ec0c7
     # via jinja2
-mypy-boto3-ssm==1.26.11.post1 \
-    --hash=sha256:5aad9ea2979b9321679298f61b6cdf7ac8941b695d2dca5cd36c7d9069dcda8d \
-    --hash=sha256:adacff335f0767c0e4d456621bfb8c42cb7f34adccb36789195a4babbd29a29b
+mypy-boto3-ssm==1.26.35 \
+    --hash=sha256:0cd93e105119b428196807ed6326c046a915d7aca4aa7e9c0005420f74307faf \
+    --hash=sha256:aa3d5b07895e6b493208cbe0d134e0566832d01e7b82a3f5721bfbabee215205
     # via boto3-stubs
 mypy-extensions==0.4.3 \
     --hash=sha256:090fedd75945a69ae91ce1303b5824f428daf5a028d2f6ab8a299250a846f15d \
