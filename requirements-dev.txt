@@ -31,23 +31,23 @@ black==22.12.0 \
     --hash=sha256:c116eed0efb9ff870ded8b62fe9f28dd61ef6e9ddd28d83d7d264a38417dcee2 \
     --hash=sha256:d30b212bffeb1e252b31dd269dfae69dd17e06d92b87ad26e23890f3efea366f
     # via evtours (pyproject.toml)
-boto3==1.26.27 \
-    --hash=sha256:255a7565226c21c5d500f69aabb977e1ac07dbaf576f4428d00558e8e508a23b \
-    --hash=sha256:6d633563802065dba2ccab48c6cab3213ca2f672ade10d096db62f686f11ea9b
+boto3==1.26.41 \
+    --hash=sha256:05a5ce3af2d7419e39d93498c7f56fd5c2cc17870c92c4abc75659553b0b16de \
+    --hash=sha256:8cbea352f28ec6b241f348356bcb8f331fc433bec3ad76ebf6194227f1a7f613
     # via evtours (pyproject.toml)
-boto3-stubs[ssm]==1.26.27 \
-    --hash=sha256:480f3f8d3e5dba636544414168b3978633e2943411d551d6d0058f52503cf1f6 \
-    --hash=sha256:651b74d7605da45c7f95ca0f812a2b136885db2ed90f763683c0a574d6cae075
+boto3-stubs[ssm]==1.26.41 \
+    --hash=sha256:56d7a2d1aaca2cc183b0b4ec12b9a91626fd802c991ea374366809ec36d64c99 \
+    --hash=sha256:e37b5e498dad6619fcd234ed62fdaaa51bbbad34bfb0ee1969e1e186879f4ba8
     # via evtours (pyproject.toml)
-botocore==1.29.27 \
-    --hash=sha256:03ead47c52c5caee4c69498a655444569e9d86c0e15e3884ce8c3eca01b4f658 \
-    --hash=sha256:0932b22d8737b11037adf7e734f9b90425b575d0757e4c1a035e99f382955221
+botocore==1.29.41 \
+    --hash=sha256:78761227d986d393956b6d08fdadcfe142748828e0e9db33f2f4c42a482dcd35 \
+    --hash=sha256:b670b7f8958a2908167081efb6ea39794bf61d618be729984629a63d85cf8bfe
     # via
     #   boto3
     #   s3transfer
-botocore-stubs[ssm]==1.29.27 \
-    --hash=sha256:2b138cd07e6aeba43b0dbbe1275b09eb6d4c6df4f5ed77c31e583c3b99145d6c \
-    --hash=sha256:98d314f82e7286230ac5b10e4a7d9960b832929e0311dbf7cca476b092ffa2ac
+botocore-stubs[ssm]==1.29.41 \
+    --hash=sha256:28e5f2ad2ae32d5e1af467ecdae1878163e0b778f47cd430db6543b9ff8bc35a \
+    --hash=sha256:3e7879be86c70c7c50b1192bc622cac1997a0e4f5511f73bd8ee11e945ea5beb
     # via
     #   boto3-stubs
     #   evtours (pyproject.toml)
@@ -207,9 +207,9 @@ markupsafe==2.1.1 \
     --hash=sha256:f121a1420d4e173a5d96e47e9a0c0dcff965afdf1626d28de1460815f7c4ee7a \
     --hash=sha256:fc7b548b17d238737688817ab67deebb30e8073c95749d55538ed473130ec0c7
     # via jinja2
-mypy-boto3-ssm==1.26.11.post1 \
-    --hash=sha256:5aad9ea2979b9321679298f61b6cdf7ac8941b695d2dca5cd36c7d9069dcda8d \
-    --hash=sha256:adacff335f0767c0e4d456621bfb8c42cb7f34adccb36789195a4babbd29a29b
+mypy-boto3-ssm==1.26.35 \
+    --hash=sha256:0cd93e105119b428196807ed6326c046a915d7aca4aa7e9c0005420f74307faf \
+    --hash=sha256:aa3d5b07895e6b493208cbe0d134e0566832d01e7b82a3f5721bfbabee215205
     # via boto3-stubs
 mypy-extensions==0.4.3 \
     --hash=sha256:090fedd75945a69ae91ce1303b5824f428daf5a028d2f6ab8a299250a846f15d \

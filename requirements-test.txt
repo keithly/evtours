@@ -17,13 +17,13 @@ attrs==22.1.0 \
     # via
     #   cattrs
     #   pytest
-boto3==1.26.27 \
-    --hash=sha256:255a7565226c21c5d500f69aabb977e1ac07dbaf576f4428d00558e8e508a23b \
-    --hash=sha256:6d633563802065dba2ccab48c6cab3213ca2f672ade10d096db62f686f11ea9b
+boto3==1.26.41 \
+    --hash=sha256:05a5ce3af2d7419e39d93498c7f56fd5c2cc17870c92c4abc75659553b0b16de \
+    --hash=sha256:8cbea352f28ec6b241f348356bcb8f331fc433bec3ad76ebf6194227f1a7f613
     # via evtours (pyproject.toml)
-botocore==1.29.27 \
-    --hash=sha256:03ead47c52c5caee4c69498a655444569e9d86c0e15e3884ce8c3eca01b4f658 \
-    --hash=sha256:0932b22d8737b11037adf7e734f9b90425b575d0757e4c1a035e99f382955221
+botocore==1.29.41 \
+    --hash=sha256:78761227d986d393956b6d08fdadcfe142748828e0e9db33f2f4c42a482dcd35 \
+    --hash=sha256:b670b7f8958a2908167081efb6ea39794bf61d618be729984629a63d85cf8bfe
     # via
     #   boto3
     #   s3transfer
