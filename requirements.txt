@@ -416,9 +416,9 @@ ujson==5.6.0 \
     --hash=sha256:fb1632b27e12c0b0df62f924c362206daf246a42c0080e959dd465810dc3482e \
     --hash=sha256:fecf83b2ef3cbce4f5cc573df6f6ded565e5e27c1af84038bae5ade306686d82
     # via fastapi
-urllib3==1.26.13 \
-    --hash=sha256:47cc05d99aaa09c9e72ed5809b60e7ba354e64b59c9c173ac3018642d8bb41fc \
-    --hash=sha256:c083dd0dce68dbfbe1129d5271cb90f9447dea7d52097c6e0126120c521ddea8
+urllib3==1.26.14 \
+    --hash=sha256:076907bf8fd355cde77728471316625a4d2f7e713c125f51953bb5b3eecf4f72 \
+    --hash=sha256:75edcdc2f7d85b137124a6c3c9fc3933cdeaa12ecb9a6a959f22797a0feca7e1
     # via botocore
 uvicorn[standard]==0.20.0 \
     --hash=sha256:a4e12017b940247f836bc90b72e725d7dfd0c8ed1c51eb365f5ba30d9f5127d8 \
