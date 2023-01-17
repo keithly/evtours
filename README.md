@@ -1,6 +1,10 @@
 # evtours 
 
-Finds the nearest EV charging station to a given coordinate.
+A demonstration of using GitHub Actions, Terraform, and FastAPI with AWS Lambda. 
+
+[Current Endpoints](https://rg4rw2mfdbv2lw5gsxvfkfeb7e0zucki.lambda-url.us-east-2.on.aws/docs)
+
+The long-term goal is to implement some geographic formulas and search algorithms.
 
 ## Development
 
