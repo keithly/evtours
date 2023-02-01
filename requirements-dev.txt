@@ -31,23 +31,23 @@ black==22.12.0 \
     --hash=sha256:c116eed0efb9ff870ded8b62fe9f28dd61ef6e9ddd28d83d7d264a38417dcee2 \
     --hash=sha256:d30b212bffeb1e252b31dd269dfae69dd17e06d92b87ad26e23890f3efea366f
     # via evtours (pyproject.toml)
-boto3==1.26.50 \
-    --hash=sha256:3737d8a506f50065bb2366a6b8e7545d88034f4771527790a125e0abd307d8e8 \
-    --hash=sha256:9c434bcd02c527485c89d6efbd38b7c205e06ab06abe80e5dbf9a8be836c77c2
+boto3==1.26.61 \
+    --hash=sha256:5194c16e1f2371c25ee038e8291faf99117b4f2d272d70f48851ba47bcea44b4 \
+    --hash=sha256:78d75f6a08c33618d9ce37acca78e4f80e316a8ce3ac040c562f8054afe6451e
     # via evtours (pyproject.toml)
-boto3-stubs[ssm]==1.26.50 \
-    --hash=sha256:07ccd222b09bb6496dc7e498139bdc5c151cfb60991b43fa6656712a0d5a080c \
-    --hash=sha256:601269c6d2a496606c1a90e3514aba1fb07e79e5c860b6fd26d7f8b1f7bfcd38
+boto3-stubs[ssm]==1.26.61 \
+    --hash=sha256:0cb52e49d374a57f322a20ca488c4dc0192c2847c6814d6b4619220b75ef1839 \
+    --hash=sha256:36cd8cfdc5cad2fc1037431d4f63cc794682e40f03e0d710cdc6d198da03ea59
     # via evtours (pyproject.toml)
-botocore==1.29.50 \
-    --hash=sha256:0e9ab19787ad7a079c00d3e40b16bc66423e54bc0e8a203b70b543bd8854d5ad \
-    --hash=sha256:5cc68b78a48217550c18b4639420b7c3b48ed9e09e749343143acbfa423ceec5
+botocore==1.29.61 \
+    --hash=sha256:22ead51f900e3465d0e4e670d02d091e613c88be8b333c47bfda727f8988eef3 \
+    --hash=sha256:c7a7133d02c5e9a8fcc9e5a238bf15bde2d5369366553520332a88bc05b7358a
     # via
     #   boto3
     #   s3transfer
-botocore-stubs[ssm]==1.29.50 \
-    --hash=sha256:0b6cafc241f548984f647bcb0ccfec3a84056a7856b514f6861fbed5ef8f5657 \
-    --hash=sha256:33a72bacab02f59786ce6e2043b3d772f80c79236076d14b954f1160bd1f2de6
+botocore-stubs[ssm]==1.29.61 \
+    --hash=sha256:77f9138963ead27768527b23d4efe881845869367b76de7404f2971d82373509 \
+    --hash=sha256:80c1d4cf67feda2e44e0b778366300bae960adcab106ae3a078303cecec4aa53
     # via
     #   boto3-stubs
     #   evtours (pyproject.toml)
