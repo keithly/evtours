@@ -29,7 +29,7 @@ FROM public.ecr.aws/docker/library/python:3.11.1-slim-bullseye
 WORKDIR /src
 
 COPY requirements.txt .
-RUN python3 -m pip install --no-cache-dir --target /src -r requirements.txt
+RUN python3 -m pip install --no-cache-dir --target /src -r requirements.txt --require-hashes
 
 COPY ./lambda-entrypoint.sh /lambda-entrypoint.sh
 COPY --from=build-image /usr/local/bin/aws-lambda-rie /usr/local/bin/aws-lambda-rie
